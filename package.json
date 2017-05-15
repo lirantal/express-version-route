@@ -1,12 +1,12 @@
 {
-  "name": "module-name",
+  "name": "express-version-router",
   "version": "1.0.0",
-  "description": "",
+  "description": "provides middleware to load controllers based on api versions",
   "main": "index.js",
   "scripts": {
     "lint": "eslint *.js",
-    "test": "ava",
-    "test:watch": "ava --watch",
+    "test": "yarn run lint && ava",
+    "test:watch": "yarn run lint && ava --watch",
     "test:coverage": "yarn run lint && nyc --reporter=lcov ava --tap",
     "coverage:view": "opn coverage/lcov-report/index.html",
     "commit": "git-cz",
@@ -85,5 +85,8 @@
         "impliedStrict": true
       }
     }
+  },
+  "dependencies": {
+    "semver": "^5.3.0"
   }
 }

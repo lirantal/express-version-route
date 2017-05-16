@@ -1,5 +1,5 @@
 {
-  "name": "express-version-router",
+  "name": "express-version-route",
   "version": "1.0.0",
   "description": "provides middleware to load controllers based on api versions",
   "main": "index.js",

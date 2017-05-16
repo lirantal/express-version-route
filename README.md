@@ -1,9 +1,9 @@
-# express-version-router
+# express-version-route
 
-[![view on npm](http://img.shields.io/npm/v/express-version-router.svg)](https://www.npmjs.org/package/express-version-router)
-[![view on npm](http://img.shields.io/npm/l/express-version-router.svg)](https://www.npmjs.org/package/express-version-router)
-[![npm module downloads](http://img.shields.io/npm/dt/express-version-router.svg)](https://www.npmjs.org/package/express-version-router)
-[![Dependency Status](https://david-dm.org/lirantal/express-version-router.svg)](https://david-dm.org/lirantal/express-version-router)
+[![view on npm](http://img.shields.io/npm/v/express-version-route.svg)](https://www.npmjs.org/package/express-version-route)
+[![view on npm](http://img.shields.io/npm/l/express-version-route.svg)](https://www.npmjs.org/package/express-version-route)
+[![npm module downloads](http://img.shields.io/npm/dt/express-version-route.svg)](https://www.npmjs.org/package/express-version-route)
+[![Dependency Status](https://david-dm.org/lirantal/express-version-route.svg)](https://david-dm.org/lirantal/express-version-route)
 
 ## What is this?
 
@@ -15,7 +15,7 @@ Create a map where the key is the version of the supported controller, and the v
 
 
 ```js
-const versionRouter = require('express-version-router')
+const versionRouter = require('express-version-route')
 
 const routesMap = new Map()
 routesMap.set('1.0', (req, res, next) => {
@@ -34,12 +34,12 @@ router.get('/test', versionRouter.route(routesMap))
 A requested version from the client must be available on the request object at `req.version`.
 You are encouraged to use this module's twin: [express-version-request](https://github.com/lirantal/express-version-request) which is another simple ExpressJS middleware that populates `req.version` from the client's X-Api-Version header.
 
-The key for the routes versions you define can be a non-semver format, for example: `1.0` or just `1`. Under the hood, `expression-version-router` uses the `semver` module to check if the version found on the request object at `req.version` matches the route. 
+The key for the routes versions you define can be a non-semver format, for example: `1.0` or just `1`. Under the hood, `expression-version-route` uses the `semver` module to check if the version found on the request object at `req.version` matches the route. 
 
 ## Installation
 
 ```bash
-yarn add express-version-router
+yarn add express-version-route
 ```
 
 ## Tests

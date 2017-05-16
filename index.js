@@ -11,12 +11,21 @@ class versionRouter {
         }
       }
 
+      const defaultRoute = this.getDefaultRoute(versionsMap)
+      if (defaultRoute) {
+        return defaultRoute(req, res, next)
+      }
+
       return next()
     }
   }
 
   static checkVersionMatch (requestedVersion, routeVersion) {
     return semver.valid(requestedVersion) && semver.satisfies(requestedVersion, routeVersion)
+  }
+
+  static getDefaultRoute (options = new Map()) {
+    return options.get('default')
   }
 }
 

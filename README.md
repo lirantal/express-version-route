@@ -72,7 +72,11 @@ yarn commit      # use the wizard for the commit message
 
 ## Alternatives
 
+Several npm projects exist which provide similar API versioning capabilities to ExpressJS projects, and I have even contributed Pull Requests to some of them that provide fixes or extra functionality but unfortunately they all seem to be unmaintained, or buggy.
 
+* https://github.com/Prasanna-sr/express-routes-versioning
+* https://github.com/elliotttf/express-versioned-routes
+* https://github.com/biowink/express-route-versioning
 
 ## Author
 

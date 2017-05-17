@@ -13,7 +13,6 @@ This npm package provides an ExpressJS middleware to load route controllers base
 
 Create a map where the key is the version of the supported controller, and the value is a regular ExpressJS route function signature.
 
-
 ```js
 const versionRouter = require('express-version-route')
 
@@ -28,6 +27,15 @@ Then, on the route which you wish to version, call the `route` function of this 
 ```js
 router.get('/test', versionRouter.route(routesMap))
 ```
+
+If no route matches the version requested by a client then the next middleware in the chain will be called.
+To set a route fallback incase no version matches set a 'default' key on the routes map, for example:
+
+```js
+routesMap.set('default', (req, res, next) => {
+  return res.status(200).json({'message': 'hello to you, this is the default route'})
+})
+``` 
 
 ## How it works
 

@@ -114,3 +114,30 @@ test('when no version mapping is provided, dont match any route', t => {
   const result = middleware(req, {}, () => {})
   t.falsy(result)
 })
+
+test('given 2 versions and a default, if no match is found the default route should be used', t => {
+  const v1 = '1.0'
+  const v2 = '2.0'
+  const requestedVersion = '3.0.0'
+
+  const routesMap = new Map()
+  routesMap.set(v2, (req, res, next) => {
+    return res.out = { testVersion: v2 }
+  })
+
+  routesMap.set(v1, (req, res, next) => {
+    return res.out = { testVersion: v1 }
+  })
+
+  routesMap.set('default', (req, res, next) => {
+    return res.out = { testVersion: 'default' }
+  })
+
+  const middleware = versionRouter.route(routesMap)
+  const req = {
+    version: requestedVersion
+  }
+
+  const result = middleware(req, {}, () => {})
+  t.is(result.testVersion, 'default')
+})

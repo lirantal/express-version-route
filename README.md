@@ -19,7 +19,7 @@ const versionRouter = require('express-version-route')
 
 const routesMap = new Map()
 routesMap.set('1.0', (req, res, next) => {
-  return res.status(200).json('hello to you version 1.0');
+  return res.status(200).json({'message': 'hello to you version 1.0'})
 })
 ```
 
@@ -31,10 +31,23 @@ router.get('/test', versionRouter.route(routesMap))
 
 ## How it works
 
+### The Library
+
 A requested version from the client must be available on the request object at `req.version`.
 You are encouraged to use this module's twin: [express-version-request](https://github.com/lirantal/express-version-request) which is another simple ExpressJS middleware that populates `req.version` from the client's X-Api-Version header.
 
 The key for the routes versions you define can be a non-semver format, for example: `1.0` or just `1`. Under the hood, `expression-version-route` uses the `semver` module to check if the version found on the request object at `req.version` matches the route. 
+
+### Client-Server flow
+
+1. An API client will send a request to your API endpoint with an HTTP header that specifies the requested version of the API to use: 
+```bash
+curl --header "X-Api-Version: 1.0.0" https://www.example.com/api/users
+```
+
+2. The `express-version-request` library will parse the `X-Api-Version` and sets ExpressJS's `req.version` property to 1.0.0.
+3. The `express-version-route` library, when implemented like the usage example above will match the 1.0 route version because semver will match 1.0.0 to 1.0, and then reply with the JSON payload `{'message': 'hello to you version 1.0'}`.  
+
 
 ## Installation
 

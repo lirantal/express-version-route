@@ -9,6 +9,12 @@
 
 This npm package provides an ExpressJS middleware to load route controllers based on api versions.
 
+Implementing API Versioning in 15 lines of code:
+
+![](https://pbs.twimg.com/media/DDcLgNQXkAARLIX.jpg:small)
+
+now just send an API request with the X-Api-Version HTTP header set to a valid version...
+
 ## Usage
 
 Create a map where the key is the version of the supported controller, and the value is a regular ExpressJS route function signature.

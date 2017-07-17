@@ -9,7 +9,8 @@ test('given a versioned router, match the route', t => {
 
   const routesMap = new Map()
   routesMap.set(v1, (req, res, next) => {
-    return res.out = { testVersion: v1 }
+    res.out = { testVersion: v1 }
+    return res.out
   })
 
   const middleware = versionRouter.route(routesMap)
@@ -27,7 +28,8 @@ test('given a versioned router, dont match if requestVersion is not semver synta
 
   const routesMap = new Map()
   routesMap.set(v1, (req, res, next) => {
-    return res.out = { testVersion: v1 }
+    res.out = { testVersion: v1 }
+    return res.out
   })
 
   const middleware = versionRouter.route(routesMap)
@@ -45,7 +47,8 @@ test('given a versioned router, dont match the requestVersion if no match exists
 
   const routesMap = new Map()
   routesMap.set(v1, (req, res, next) => {
-    return res.out = { testVersion: v1 }
+    res.out = { testVersion: v1 }
+    return res.out
   })
 
   const middleware = versionRouter.route(routesMap)
@@ -64,11 +67,13 @@ test('given 2 versions, first version matches', t => {
 
   const routesMap = new Map()
   routesMap.set(v1, (req, res, next) => {
-    return res.out = { testVersion: v1 }
+    res.out = { testVersion: v1 }
+    return res.out
   })
 
   routesMap.set(v2, (req, res, next) => {
-    return res.out = { testVersion: v2 }
+    res.out = { testVersion: v2 }
+    return res.out
   })
 
   const middleware = versionRouter.route(routesMap)
@@ -87,11 +92,13 @@ test('given 2 versions, second version matches so the map insertion order doesnt
 
   const routesMap = new Map()
   routesMap.set(v2, (req, res, next) => {
-    return res.out = { testVersion: v2 }
+    res.out = { testVersion: v2 }
+    return res.out
   })
 
   routesMap.set(v1, (req, res, next) => {
-    return res.out = { testVersion: v1 }
+    res.out = { testVersion: v1 }
+    return res.out
   })
 
   const middleware = versionRouter.route(routesMap)
@@ -122,15 +129,18 @@ test('given 2 versions and a default, if no match is found the default route sho
 
   const routesMap = new Map()
   routesMap.set(v2, (req, res, next) => {
-    return res.out = { testVersion: v2 }
+    res.out = { testVersion: v2 }
+    return res.out
   })
 
   routesMap.set(v1, (req, res, next) => {
-    return res.out = { testVersion: v1 }
+    res.out = { testVersion: v1 }
+    return res.out
   })
 
   routesMap.set('default', (req, res, next) => {
-    return res.out = { testVersion: 'default' }
+    res.out = { testVersion: 'default' }
+    return res.out
   })
 
   const middleware = versionRouter.route(routesMap)

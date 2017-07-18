@@ -95,7 +95,23 @@ git add .           # add files to staging
 yarn commit      # use the wizard for the commit message
 ```
 
-## Alternatives
+## On API Versioning...
+
+An API versioning is a practice that enables services to evolve their APIs with new changes, signatures and the overall API contract without interrupting API consumers and forcing them to repeatedly make changes in order to keep in pace with changes to APIs.
+
+Several methodologies exist to version your API:
+* URL: A request specifies the version for the resource: `http://api.domain.com/api/v1/schools/3/students`
+* Query String: A request specifies the resource in a query string: `http://api.domain.com/api/schools/3/students?api-version=1`
+* Custom HTTP Header: A request to a resource `http://api.domain.com/api/schools/3/students` with a custom HTTP header set in the request `X-Api-Version: 1`
+* MIME Type content negotiation: A request to a resource `http://api.domain.com/api/schools/3/students` with an `Accept` header that specifies the requested content and its version: `Accept: application/vnd.ecma.app-v2+json`
+
+There is no strict rule on which methodology to follow and each has their own pros and cons. The RESTful approach is the semantic mime-type content negotiation, but a more pragmatic solution is the URL or custom HTTP header.
+
+### Why API Versioning at all ?
+
+Upgrading APIs with some breaking change would lead to breaking existing products, services or even your own frontend web application which is dependent on your API contract. By implementing API versioning you can ensure that changes you make to your underlying API endpoints are not affecting systems that consume them, and using a new version of an API is an opt-in on the consumer. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+
+## Alternative Node.js libraries
 
 Several npm projects exist which provide similar API versioning capabilities to ExpressJS projects, and I have even contributed Pull Requests to some of them that provide fixes or extra functionality but unfortunately they all seem to be unmaintained, or buggy.
 

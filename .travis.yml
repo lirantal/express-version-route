@@ -9,6 +9,4 @@ before_install:
 install:
   - yarn global add codecov
   - yarn install
-script: 
-  - yarn run test:coverage
-  - codecov
+

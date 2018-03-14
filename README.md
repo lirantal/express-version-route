@@ -5,6 +5,8 @@
 [![npm module downloads](http://img.shields.io/npm/dt/express-version-route.svg)](https://www.npmjs.org/package/express-version-route)
 [![Dependency Status](https://david-dm.org/lirantal/express-version-route.svg)](https://david-dm.org/lirantal/express-version-route)
 [![Known Vulnerabilities](https://snyk.io/test/github/lirantal/express-version-route/badge.svg)](https://snyk.io/test/github/lirantal/express-version-route)
+[![Security Responsible Disclosure](https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg)](https://github.com/nodejs/security-wg/blob/master/processes/responsible_disclosure_template.md
+)
 
 This npm package provides an ExpressJS middleware to load route controllers based on api versions.
 

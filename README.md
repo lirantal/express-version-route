@@ -49,7 +49,7 @@ routesMap.set('default', (req, res, next) => {
 ### The Library
 
 A requested version from the client must be available on the request object at `req.version`.
-You are encouraged to use this module's twin: [express-version-request](https://github.com/lirantal/express-version-request) which is another simple ExpressJS middleware that populates `req.version` from the client's X-Api-Version header or from a query string (such as 'api-version=1.0.0')
+You are encouraged to use this module's twin: [express-version-request](https://github.com/lirantal/express-version-request) which is another simple ExpressJS middleware that populates `req.version` from the client's X-Api-Version header, Accept header or from a query string (such as 'api-version=1.0.0')
 
 The key for the routes versions you define can be a non-semver format, for example: `1.0` or just `1`. Under the hood, `expression-version-route` uses the `semver` module to check if the version found on the request object at `req.version` matches the route. 
 

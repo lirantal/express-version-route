@@ -14,7 +14,7 @@ Implementing API Versioning in 15 lines of code:
 
 ![](https://pbs.twimg.com/media/DDcLgNQXkAARLIX.jpg:small)
 
-now just send an API request with the X-Api-Version HTTP header set to a valid version...
+now any request would be handled with the appropriate route handler in accordance to `request.version`.
 
 ## Usage
 

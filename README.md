@@ -46,6 +46,26 @@ routesMap.set('default', (req, res, next) => {
 })
 ``` 
 
+## Usage with TypeScript
+
+```ts
+import * as versionRouter from 'express-version-route'
+import { Router, Handler } from 'express';
+
+const router = express.Router();
+const routesMap = new Map<string, Handler>();
+
+routesMap.set('1.0', (req, res, next) => {
+  return res.status(200).json({'message': 'hello to you version 1.0'})
+})
+
+routesMap.set('default', (req, res, next) => {
+  return res.status(200).json({'message': 'hello to you, this is the default route'})
+})
+
+router.get('/test', versionRouter.route(routesMap))
+```
+
 ## How it works
 
 ### The Library
@@ -71,6 +91,14 @@ curl --header "X-Api-Version: 1.0.0" https://www.example.com/api/users
 ```bash
 yarn add express-version-route
 ```
+
+## TypeScript Support
+
+```bash
+yarn add --dev @types/express-version-route
+```
+
+_Note: Don't forget to add types for Express as well!_
 
 ## Tests
 

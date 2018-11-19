@@ -52,7 +52,7 @@ routesMap.set('default', (req, res, next) => {
 import * as versionRouter from 'express-version-route'
 import { Router, Handler } from 'express';
 
-const router = express.Router();
+const router = Router();
 const routesMap = new Map<string, Handler>();
 
 routesMap.set('1.0', (req, res, next) => {

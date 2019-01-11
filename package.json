@@ -34,7 +34,7 @@
     "husky": "^1.0.0-rc.13",
     "nyc": "^11.3.0",
     "opn-cli": "^4.0.0",
-    "semantic-release": "^15.8.1",
+    "semantic-release": "^15.13.3",
     "standard": "^12.0.0"
   },
   "nyc": {

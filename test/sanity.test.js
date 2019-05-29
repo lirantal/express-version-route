@@ -1,7 +1,8 @@
 'use strict'
 
 const test = require('ava')
-const versionRouter = require('../index')
+const versionRouterExports = require('../index')
+const versionRouter = versionRouterExports.versionRouter
 
 test('given a versioned router, match the route', t => {
   const v1 = '1.0'
@@ -41,7 +42,7 @@ test('given a versioned router, dont match if requestVersion is not semver synta
   t.falsy(result)
 })
 
-test('given a versioned router, dont match the requestVersion if no match exists', t => {
+test('given a versioned router, dont match the requestVersion and error out if no match exists', t => {
   const v1 = '1.0'
   const requestedVersion = '3.0.0'
 
@@ -51,13 +52,22 @@ test('given a versioned router, dont match the requestVersion if no match exists
     return res.out
   })
 
+  const nextHandler = (err) => {
+    return err
+  }
+
   const middleware = versionRouter.route(routesMap)
   const req = {
     version: requestedVersion
   }
 
-  const result = middleware(req, {}, () => {})
-  t.falsy(result)
+  let resIn = null
+  const result = middleware(req, resIn, nextHandler)
+  t.falsy(resIn)
+  t.truthy(result instanceof Error)
+  t.truthy(result instanceof versionRouterExports.RouteVersionUnmatchedError)
+  t.truthy(result.name === 'RouteVersionUnmatchedError')
+  t.truthy(result.message === `${requestedVersion} doesn't match any versions`)
 })
 
 test('given 2 versions, first version matches', t => {
@@ -83,6 +93,31 @@ test('given 2 versions, first version matches', t => {
 
   const result = middleware(req, {}, () => {})
   t.is(result.testVersion, v1)
+})
+
+test('given 2 overlapping matching versions, first match wins', t => {
+  const v1 = '>=1.0'
+  const v2 = '>=2.0'
+  const requestedVersion = '2.0.0'
+
+  const routesMap = new Map()
+  routesMap.set(v2, (req, res, next) => {
+    res.out = { testVersion: v2 }
+    return res.out
+  })
+
+  routesMap.set(v1, (req, res, next) => {
+    res.out = { testVersion: v1 }
+    return res.out
+  })
+
+  const middleware = versionRouter.route(routesMap)
+  const req = {
+    version: requestedVersion
+  }
+
+  const result = middleware(req, {}, () => {})
+  t.is(result.testVersion, v2)
 })
 
 test('given 2 versions, second version matches so the map insertion order doesnt count', t => {

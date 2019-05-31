@@ -19,7 +19,7 @@
   "author": "Liran Tal",
   "license": "MIT",
   "devDependencies": {
-    "@commitlint/cli": "^7.0.0",
+    "@commitlint/cli": "^8.0.0",
     "@commitlint/config-angular": "^7.0.1",
     "ava": "^1.0.1",
     "commitizen": "^3.0.0",

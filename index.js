@@ -5,16 +5,15 @@ const semver = require('semver')
 class RouteVersionUnmatchedError extends Error {
   constructor (message) {
     super(message)
-    this.constructor = RouteVersionUnmatchedError
-
-    const actualProto = new.target.prototype
-    Object.setPrototypeOf(this, actualProto)
-    this.message = message
-    this.name = 'RouteVersionUnmatchedError'
+    this.name = this.constructor.name
   }
 }
 
 class versionRouter {
+  static get RouteVersionUnmatchedError () {
+    return RouteVersionUnmatchedError
+  }
+
   static route (versionsMap = new Map(), options = new Map()) {
     return (req, res, next) => {
       for (let [versionKey, versionRouter] of versionsMap) {
@@ -41,7 +40,4 @@ class versionRouter {
   }
 }
 
-module.exports = {
-  versionRouter,
-  RouteVersionUnmatchedError
-}
+module.exports = versionRouter

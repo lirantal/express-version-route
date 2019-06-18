@@ -1,8 +1,7 @@
 'use strict'
 
 const test = require('ava')
-const versionRouterExports = require('../index')
-const versionRouter = versionRouterExports.versionRouter
+const versionRouter = require('../index')
 
 test('given a versioned router, match the route', t => {
   const v1 = '1.0'
@@ -65,7 +64,7 @@ test('given a versioned router, dont match the requestVersion and error out if n
   const result = middleware(req, resIn, nextHandler)
   t.falsy(resIn)
   t.truthy(result instanceof Error)
-  t.truthy(result instanceof versionRouterExports.RouteVersionUnmatchedError)
+  t.truthy(result instanceof versionRouter.RouteVersionUnmatchedError)
   t.truthy(result.name === 'RouteVersionUnmatchedError')
   t.truthy(result.message === `${requestedVersion} doesn't match any versions`)
 })

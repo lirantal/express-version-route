@@ -1,19 +1,9 @@
 'use strict'
 
 const semver = require('semver')
-
-class RouteVersionUnmatchedError extends Error {
-  constructor (message) {
-    super(message)
-    this.name = this.constructor.name
-  }
-}
+const { RouteVersionUnmatchedError } = require('./errors')
 
 class versionRouter {
-  static get RouteVersionUnmatchedError () {
-    return RouteVersionUnmatchedError
-  }
-
   static route (versionsMap = new Map(), options = new Map()) {
     return (req, res, next) => {
       for (let [versionKey, versionRouter] of versionsMap) {

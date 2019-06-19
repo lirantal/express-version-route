@@ -1,4 +1,4 @@
-
+'use strict'
 class RouteVersionUnmatchedError extends Error {
   constructor (message) {
     super(message)

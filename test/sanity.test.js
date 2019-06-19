@@ -2,6 +2,7 @@
 
 const test = require('ava')
 const versionRouter = require('../index')
+const { RouteVersionUnmatchedError } = require('../errors')
 
 test('given a versioned router, match the route', t => {
   const v1 = '1.0'
@@ -64,7 +65,7 @@ test('given a versioned router, dont match the requestVersion and error out if n
   const result = middleware(req, resIn, nextHandler)
   t.falsy(resIn)
   t.truthy(result instanceof Error)
-  t.truthy(result instanceof versionRouter.RouteVersionUnmatchedError)
+  t.truthy(result instanceof RouteVersionUnmatchedError)
   t.truthy(result.name === 'RouteVersionUnmatchedError')
   t.truthy(result.message === `${requestedVersion} doesn't match any versions`)
 })

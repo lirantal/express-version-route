@@ -4,7 +4,7 @@ node_js:
   - "8"
   - "10"
 install:
-  - npm install -g codecov standard eslint
+  - npm install -g codecov standard eslint eslint-plugin-ava
 script:
   - yarn test:coverage
   - codecov

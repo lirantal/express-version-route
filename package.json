@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "standard && eslint *.js",
     "lint:fix": "standard --fix",
-    "test": "yarn run lint && nyc --reporter=lcov ava --tap",
+    "test": "yarn run lint && ava",
     "test:watch": "yarn run lint && ava --watch",
     "test:coverage": "yarn run lint && nyc --reporter=lcov ava --tap",
     "coverage:view": "opn coverage/lcov-report/index.html",
@@ -39,10 +39,10 @@
     "standard": "^12.0.0"
   },
   "nyc": {
-    "statements": 88,
-    "branches": 88,
-    "functions": 88,
-    "lines": 88,
+    "statements": 90,
+    "branches": 90,
+    "functions": 90,
+    "lines": 90,
     "reporter": [
       "lcov",
       "text-summary"

@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "standard && eslint *.js",
     "lint:fix": "standard --fix",
-    "test": "yarn run lint && ava",
+    "test": "yarn run lint && nyc --reporter=lcov ava --tap",
     "test:watch": "yarn run lint && ava --watch",
     "test:coverage": "yarn run lint && nyc --reporter=lcov ava --tap",
     "coverage:view": "opn coverage/lcov-report/index.html",

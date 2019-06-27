@@ -4,10 +4,9 @@ node_js:
   - "8"
   - "10"
 install:
-  - npm install -g codecov
+  - npm install -g codecov standard
 script:
   - yarn test:coverage
   - codecov
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
   - yarn run semantic-release

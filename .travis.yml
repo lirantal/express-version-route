@@ -2,5 +2,10 @@ language: node_js
 node_js:
   - "8"
   - "10"
+
+env:
+  CODECOV_TOKEN="95af1e60-ec9e-42e6-9649-cb0691a0553b"
+
 after_success:
   - yarn run semantic-release
+  - bash <(curl -s https://codecov.io/bash)

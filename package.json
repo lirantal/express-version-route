@@ -10,7 +10,7 @@
     "test:watch": "yarn run lint && ava --watch",
     "test:coverage": "yarn run lint && nyc --reporter=lcov ava --tap",
     "coverage:view": "opn coverage/lcov-report/index.html",
-    "report-coverage": "codecov",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "commit": "git-cz",
     "docs": "yarn run docs:code && yarn run docs:api",
     "docs:api": "doxdox *.js --layout bootstrap --output docs/index.html",

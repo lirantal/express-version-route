@@ -3,6 +3,8 @@ sudo: false
 node_js:
   - "8"
   - "10"
+script:
+  - codecov
 after_success:
-  - yarn run semantic-release
   - bash <(curl -s https://codecov.io/bash)
+  - yarn run semantic-release

@@ -3,7 +3,5 @@ sudo: false
 node_js:
   - "8"
   - "10"
-install:
-  - npm install -g codecov
 after_success:
   - yarn run semantic-release

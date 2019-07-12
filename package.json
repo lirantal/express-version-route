@@ -36,7 +36,7 @@
     "nyc": "^13.2.0",
     "opn-cli": "^4.0.0",
     "semantic-release": "^15.8.1",
-    "standard": "^12.0.0"
+    "standard": "^13.0.2"
   },
   "nyc": {
     "statements": 88,

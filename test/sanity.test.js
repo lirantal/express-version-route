@@ -19,7 +19,7 @@ test('given a versioned router, match the route', t => {
     version: requestedVersion
   }
 
-  const result = middleware(req, {}, () => {})
+  const result = middleware(req, {}, () => { })
   t.is(result.testVersion, v1)
 })
 
@@ -38,7 +38,7 @@ test('given a versioned router, dont match if requestVersion is not semver synta
     version: requestedVersion
   }
 
-  const result = middleware(req, {}, () => {})
+  const result = middleware(req, {}, () => { })
   t.falsy(result)
 })
 
@@ -66,8 +66,8 @@ test('given a versioned router, dont match the requestVersion and error out if n
   t.falsy(resIn)
   t.truthy(result instanceof Error)
   t.truthy(result instanceof RouteVersionUnmatchedError)
-  t.truthy(result.name === 'RouteVersionUnmatchedError')
-  t.truthy(result.message === `${requestedVersion} doesn't match any versions`)
+  t.true(result.name === 'RouteVersionUnmatchedError')
+  t.true(result.message === `${requestedVersion} doesn't match any versions`)
 })
 
 test('given 2 versions, first version matches', t => {
@@ -91,7 +91,7 @@ test('given 2 versions, first version matches', t => {
     version: requestedVersion
   }
 
-  const result = middleware(req, {}, () => {})
+  const result = middleware(req, {}, () => { })
   t.is(result.testVersion, v1)
 })
 
@@ -116,7 +116,7 @@ test('given 2 overlapping matching versions, first match wins', t => {
     version: requestedVersion
   }
 
-  const result = middleware(req, {}, () => {})
+  const result = middleware(req, {}, () => { })
   t.is(result.testVersion, v2)
 })
 
@@ -141,7 +141,7 @@ test('given 2 versions, second version matches so the map insertion order doesnt
     version: requestedVersion
   }
 
-  const result = middleware(req, {}, () => {})
+  const result = middleware(req, {}, () => { })
   t.is(result.testVersion, v1)
 })
 
@@ -153,7 +153,7 @@ test('when no version mapping is provided, dont match any route', t => {
     version: requestedVersion
   }
 
-  const result = middleware(req, {}, () => {})
+  const result = middleware(req, {}, () => { })
   t.falsy(result)
 })
 
@@ -183,6 +183,6 @@ test('given 2 versions and a default, if no match is found the default route sho
     version: requestedVersion
   }
 
-  const result = middleware(req, {}, () => {})
+  const result = middleware(req, {}, () => { })
   t.is(result.testVersion, 'default')
 })

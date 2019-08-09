@@ -1,7 +1,5 @@
 # express-version-route
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/lirantal/express-version-route.svg)](https://greenkeeper.io/)
-
 [![view on npm](http://img.shields.io/npm/v/express-version-route.svg)](https://www.npmjs.org/package/express-version-route)
 [![view on npm](http://img.shields.io/npm/l/express-version-route.svg)](https://www.npmjs.org/package/express-version-route)
 [![Codecov](https://img.shields.io/codecov/c/gh/lirantal/express-version-route.svg)](https://codecov.io/gh/lirantal/express-version-route)

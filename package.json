@@ -19,6 +19,11 @@
   },
   "author": "Liran Tal",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lirantal/express-version-route.git"
+  },
+  "homepage": "https://github.com/lirantal/express-version-route#readme",
   "devDependencies": {
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-angular": "^7.0.1",

@@ -203,11 +203,42 @@ test('given 2 versions, max version matches', t => {
     return res.out
   })
 
-  const middleware = versionRouter.route(routesMap)
+  const middleware = versionRouter.route(routesMap,{useMaxVersion: true})
   const req = {
     version: requestedVersion
   }
 
   const result = middleware(req, {}, () => { })
   t.is(result.testVersion, v2)
+})
+
+test('given 2 versions, if no max version default matches', t => {
+  const v1 = '1.2.0'
+  const v2 = '1.2.3'
+  const v3 = 'default'
+  const requestedVersion = '1.2'
+
+  const routesMap = new Map()
+  routesMap.set(v1, (req, res, next) => {
+    res.out = { testVersion: v1 }
+    return res.out
+  })
+
+  routesMap.set(v2, (req, res, next) => {
+    res.out = { testVersion: v2 }
+    return res.out
+  })
+
+  routesMap.set(v3, (req, res, next) => {
+    res.out = { testVersion: v3 }
+    return res.out
+  })
+
+  const middleware = versionRouter.route(routesMap)
+  const req = {
+    version: requestedVersion
+  }
+
+  const result = middleware(req, {}, () => { })
+  t.is(result.testVersion, v3)
 })

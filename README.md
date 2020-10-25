@@ -44,6 +44,21 @@ routesMap.set('default', (req, res, next) => {
 })
 ``` 
 
+If maximal possible version (for example to get the latest bugfix) is necessary, then please specify `useMaxVersion: true` in `route` function, then the maximal possible version will be returned for your request. For example for `1.0` request, the version `1.0.2` will be returned:
+
+```js
+const routesMap = new Map()
+routesMap.set('1.0.0', (req, res, next) => {
+  return res.status(200).json({'message': 'hello to you version 1.0.0'})
+})
+routesMap.set('1.0.2', (req, res, next) => {
+  return res.status(200).json({'message': 'hello to you version 1.0.2'})
+})
+
+router.get('/test', versionRouter.route(routesMap,{useMaxVersion: true}))
+```
+
+
 ## Usage with TypeScript
 
 ```ts

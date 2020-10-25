@@ -14,7 +14,7 @@ class versionRouter {
         }
       }
 
-      if(options.useMaxVersion) {
+      if (options.useMaxVersion) {
         const maxVersion = semver.maxSatisfying(versionArray, req.version)
         if (maxVersion) {
           for (let [versionKey, versionRouter] of versionsMap) {
@@ -24,7 +24,7 @@ class versionRouter {
           }
         }
       }
-      
+
       const defaultRoute = this.getDefaultRoute(versionsMap)
       if (defaultRoute) {
         return defaultRoute(req, res, next)

@@ -203,7 +203,7 @@ test('given 2 versions, max version matches', t => {
     return res.out
   })
 
-  const middleware = versionRouter.route(routesMap,{useMaxVersion: true})
+  const middleware = versionRouter.route(routesMap, { useMaxVersion: true })
   const req = {
     version: requestedVersion
   }

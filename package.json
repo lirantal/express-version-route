@@ -44,10 +44,10 @@
     "standard": "^12.0.0"
   },
   "nyc": {
-    "statements": 88,
-    "branches": 88,
-    "functions": 88,
-    "lines": 88,
+    "statements": 85,
+    "branches": 85,
+    "functions": 85,
+    "lines": 85,
     "reporter": [
       "lcov",
       "text-summary"

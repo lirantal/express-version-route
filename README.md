@@ -9,6 +9,8 @@
 [![Security Responsible Disclosure](https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg)](https://github.com/nodejs/security-wg/blob/master/processes/responsible_disclosure_template.md
 )
 
+[![express-version-route](https://snyk.io/advisor/npm-package/express-version-route/badge.svg)](https://snyk.io/advisor/npm-package/express-version-route)
+
 This npm package provides an ExpressJS middleware to load route controllers based on api versions.
 
 Implementing API Versioning in 15 lines of code:

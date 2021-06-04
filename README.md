@@ -11,17 +11,17 @@
 
 [![express-version-route](https://snyk.io/advisor/npm-package/express-version-route/badge.svg)](https://snyk.io/advisor/npm-package/express-version-route)
 
-This npm package provides an ExpressJS middleware to load route controllers based on api versions.
+This npm package provides an Express middleware to load route controllers based on api versions.
 
-Implementing API Versioning in 15 lines of code:
+Implementing API Versioning as simple as:
 
-![](https://pbs.twimg.com/media/DDcLgNQXkAARLIX.jpg:small)
+![](.github/express-version-route.png)
 
 now any request would be handled with the appropriate route handler in accordance to `request.version`.
 
 ## Usage
 
-Create a map where the key is the version of the supported controller, and the value is a regular ExpressJS route function signature.
+Create a map where the key is the version of the supported controller, and the value is a regular Express route function signature.
 
 ```js
 const versionRouter = require('express-version-route')
@@ -87,7 +87,7 @@ router.get('/test', versionRouter.route(routesMap))
 ### The Library
 
 A requested version from the client must be available on the request object at `req.version`.
-You are encouraged to use this module's twin: [express-version-request](https://github.com/lirantal/express-version-request) which is another simple ExpressJS middleware that populates `req.version` from the client's X-Api-Version header, Accept header or from a query string (such as 'api-version=1.0.0')
+You are encouraged to use this module's twin: [express-version-request](https://github.com/lirantal/express-version-request) which is another simple Express middleware that populates `req.version` from the client's X-Api-Version header, Accept header or from a query string (such as 'api-version=1.0.0')
 
 The key for the routes versions you define can be a non-semver format, for example: `1.0` or just `1`. Under the hood, `expression-version-route` uses the `semver` module to check if the version found on the request object at `req.version` matches the route. 
 
@@ -98,7 +98,7 @@ The key for the routes versions you define can be a non-semver format, for examp
 curl --header "X-Api-Version: 1.0.0" https://www.example.com/api/users
 ```
 
-2. The `express-version-request` library will parse the `X-Api-Version` and sets ExpressJS's `req.version` property to 1.0.0.
+2. The `express-version-request` library will parse the `X-Api-Version` and sets Express's `req.version` property to 1.0.0.
 3. The `express-version-route` library, when implemented like the usage example above will match the 1.0 route version because semver will match 1.0.0 to 1.0, and then reply with the JSON payload `{'message': 'hello to you version 1.0'}`.  
 
 
@@ -162,7 +162,7 @@ Upgrading APIs with some breaking change would lead to breaking existing product
 
 ## Alternative Node.js libraries
 
-Several npm projects exist which provide similar API versioning capabilities to ExpressJS projects, and I have even contributed Pull Requests to some of them that provide fixes or extra functionality but unfortunately they all seem to be unmaintained, or buggy.
+Several npm projects exist which provide similar API versioning capabilities to Express projects, and I have even contributed Pull Requests to some of them that provide fixes or extra functionality but unfortunately they all seem to be unmaintained, or buggy.
 
 * https://github.com/Prasanna-sr/express-routes-versioning
 * https://github.com/elliotttf/express-versioned-routes

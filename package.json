@@ -132,6 +132,6 @@
     }
   },
   "dependencies": {
-    "semver": "^6.3.0"
+    "semver": "^7.3.7"
   }
 }

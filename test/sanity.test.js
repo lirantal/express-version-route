@@ -23,6 +23,33 @@ test('given a versioned router, match the route', t => {
   t.is(result.testVersion, v1)
 })
 
+test('given a versioned router with an array of handlers, match and chain handlers', t => {
+  const v1 = '1.0'
+  const requestedVersion = '1.0.0'
+
+  const routesMap = new Map()
+  routesMap.set(v1, [
+    (req, res, next) => {
+      res.chain = ['first']
+      return next()
+    },
+    (req, res, next) => {
+      res.chain.push('second')
+      res.out = { testVersion: v1 }
+      return res.out
+    }
+  ])
+
+  const middleware = versionRouter.route(routesMap)
+  const req = {
+    version: requestedVersion
+  }
+
+  const result = middleware(req, {}, () => { })
+  t.is(result.testVersion, v1)
+  t.deepEqual(result, { testVersion: v1 })
+})
+
 test('given a versioned router, dont match if requestVersion is not semver syntax', t => {
   const v1 = '1.0'
   const requestedVersion = '1.0'

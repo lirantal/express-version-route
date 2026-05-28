@@ -10,7 +10,7 @@ class versionRouter {
       for (let [versionKey, versionRouter] of versionsMap) {
         versionArray.push(versionKey)
         if (this.checkVersionMatch(req.version, versionKey)) {
-          return versionRouter(req, res, next)
+          return this.dispatchRoute(versionRouter, req, res, next)
         }
       }
 
@@ -40,6 +40,30 @@ class versionRouter {
 
   static getDefaultRoute (options = new Map()) {
     return options.get('default')
+  }
+
+  static dispatchRoute (versionRoute, req, res, next) {
+    if (!Array.isArray(versionRoute)) {
+      return versionRoute(req, res, next)
+    }
+
+    let currentIndex = 0
+    const dispatch = (err) => {
+      if (err) {
+        return next(err)
+      }
+
+      const route = versionRoute[currentIndex]
+      currentIndex += 1
+
+      if (!route) {
+        return next()
+      }
+
+      return route(req, res, dispatch)
+    }
+
+    return dispatch()
   }
 }
 

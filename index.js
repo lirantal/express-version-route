@@ -10,6 +10,26 @@ class versionRouter {
       for (let [versionKey, versionRouter] of versionsMap) {
         versionArray.push(versionKey)
         if (this.checkVersionMatch(req.version, versionKey)) {
+          if (Array.isArray(versionRouter)) {
+            const handlers = versionRouter
+            let idx = 0
+            const dispatch = (err) => {
+              if (err) {
+                return next(err)
+              }
+
+              const handler = handlers[idx]
+              idx += 1
+              if (!handler) {
+                return
+              }
+
+              return handler(req, res, dispatch)
+            }
+
+            return dispatch()
+          }
+
           return versionRouter(req, res, next)
         }
       }

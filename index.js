@@ -10,8 +10,8 @@ class versionRouter {
       for (let [versionKey, versionRouter] of versionsMap) {
         versionArray.push(versionKey)
         if (this.checkVersionMatch(req.version, versionKey)) {
-          if(Array.isArray(versionRouter))
-            return versionRouter;
+          if (Array.isArray(versionRouter))
+            return versionRouter
           else
             return versionRouter(req, res, next)
         }

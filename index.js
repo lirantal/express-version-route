@@ -10,6 +10,11 @@ class versionRouter {
       for (let [versionKey, versionRouter] of versionsMap) {
         versionArray.push(versionKey)
         if (this.checkVersionMatch(req.version, versionKey)) {
+          if (Array.isArray(versionRouter)) {
+            return versionRouter.reduceRight((nextHandler, handler) => {
+              return () => handler(req, res, nextHandler)
+            }, next)()
+          }
           return versionRouter(req, res, next)
         }
       }

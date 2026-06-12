@@ -21,16 +21,17 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: install dependencies
         run: yarn install --ignore-engines
-      - name: install codecov
-        run: npm install -g codecov
       - name: run tests
         run: yarn run test:coverage
-      - name: get code coverage report
-        run: yarn run report-coverage
-      - name: send coverage
-        run: codecov
+      - name: coverage
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        if: github.actor != 'dependabot[bot]'
+        with:
+          fail_ci_if_error: true
+          verbose: false
+          token: ${{ secrets.CODECOV_TOKEN }}
         env:
-          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
+          CI: true
 
   release:
     name: do semantic release

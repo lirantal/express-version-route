@@ -88,7 +88,7 @@ test('given a versioned router, dont match the requestVersion and error out if n
     version: requestedVersion
   }
 
-  let resIn = null
+  const resIn = null
   const result = middleware(req, resIn, nextHandler)
   t.falsy(resIn)
   t.truthy(result instanceof Error)

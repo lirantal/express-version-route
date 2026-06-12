@@ -32,16 +32,16 @@
     "cz-conventional-changelog": "^2.1.0",
     "docco": "^0.7.0",
     "doxdox": "^2.0.1",
-    "eslint": "^6.0.0",
-    "eslint-plugin-ava": "^5.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-security": "^1.3.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-ava": "^15.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^17.15.0",
+    "eslint-plugin-security": "^3.0.1",
     "husky": "^3.0.0",
-    "nyc": "^13.2.0",
+    "nyc": "^17.1.0",
     "opn-cli": "^4.0.0",
     "semantic-release": "^25.0.3",
-    "standard": "^12.0.0"
+    "standard": "^17.1.2"
   },
   "nyc": {
     "statements": 85,
@@ -81,17 +81,15 @@
       "es6": true
     },
     "plugins": [
-      "node",
+      "n",
       "security",
       "ava"
     ],
     "extends": [
       "plugin:ava/recommended",
-      "plugin:node/recommended"
+      "plugin:n/recommended"
     ],
     "rules": {
-      "node/no-unsupported-features": "off",
-      "node/no-unpublished-require": "off",
       "security/detect-non-literal-fs-filename": "error",
       "security/detect-unsafe-regex": "error",
       "security/detect-buffer-noassert": "error",
@@ -103,7 +101,8 @@
       "security/detect-non-literal-require": "error",
       "security/detect-object-injection": "error",
       "security/detect-possible-timing-attacks": "error",
-      "security/detect-pseudoRandomBytes": "error"
+      "security/detect-pseudoRandomBytes": "error",
+      "n/no-unpublished-require": "off"
     },
     "parserOptions": {
       "ecmaFeatures": {

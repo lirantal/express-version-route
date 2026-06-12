@@ -6,8 +6,8 @@ const { RouteVersionUnmatchedError } = require('./errors')
 class versionRouter {
   static route (versionsMap = new Map(), options = new Map()) {
     return (req, res, next) => {
-      var versionArray = []
-      for (let [versionKey, versionRouter] of versionsMap) {
+      const versionArray = []
+      for (const [versionKey, versionRouter] of versionsMap) {
         versionArray.push(versionKey)
         if (this.checkVersionMatch(req.version, versionKey)) {
           if (Array.isArray(versionRouter)) {
@@ -22,7 +22,7 @@ class versionRouter {
       if (options.useMaxVersion) {
         const maxVersion = semver.maxSatisfying(versionArray, req.version)
         if (maxVersion) {
-          for (let [versionKey, versionRouter] of versionsMap) {
+          for (const [versionKey, versionRouter] of versionsMap) {
             if (this.checkVersionMatch(maxVersion, versionKey)) {
               return versionRouter(req, res, next)
             }

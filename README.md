@@ -163,6 +163,10 @@ Several npm projects exist which provide similar API versioning capabilities to 
 * https://github.com/elliotttf/express-versioned-routes
 * https://github.com/biowink/express-route-versioning
 
+## Documentation
+
+- [Project documentation](./docs/README.md) - development, testing, architecture, and conventions.
+
 ## Contributing
 
 Please consult [CONTRIBUTING](./CONTRIBUTING.md) for guidelines on contributing to this project.

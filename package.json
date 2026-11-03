@@ -141,5 +141,5 @@
     "node": ">=24.0.0",
     "npm": ">=11.10.0"
   },
-  "packageManager": "npm@11.21.0"
+  "packageManager": "yarn@1.22.22"
 }

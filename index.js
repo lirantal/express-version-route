@@ -3,6 +3,21 @@
 const semver = require('semver')
 const { RouteVersionUnmatchedError } = require('./errors')
 
+function dispatchRoute (route, req, res, next) {
+  if (!Array.isArray(route)) {
+    return route(req, res, next)
+  }
+
+  return route.reduceRight((nextHandler, handler) => {
+    return err => {
+      if (err) {
+        return next(err)
+      }
+      return handler(req, res, nextHandler)
+    }
+  }, next)()
+}
+
 class versionRouter {
   static route (versionsMap = new Map(), options = new Map()) {
     return (req, res, next) => {
@@ -10,12 +25,7 @@ class versionRouter {
       for (const [versionKey, versionRouter] of versionsMap) {
         versionArray.push(versionKey)
         if (this.checkVersionMatch(req.version, versionKey)) {
-          if (Array.isArray(versionRouter)) {
-            return versionRouter.reduceRight((nextHandler, handler) => {
-              return () => handler(req, res, nextHandler)
-            }, next)()
-          }
-          return versionRouter(req, res, next)
+          return dispatchRoute(versionRouter, req, res, next)
         }
       }
 
@@ -24,7 +34,7 @@ class versionRouter {
         if (maxVersion) {
           for (const [versionKey, versionRouter] of versionsMap) {
             if (this.checkVersionMatch(maxVersion, versionKey)) {
-              return versionRouter(req, res, next)
+              return dispatchRoute(versionRouter, req, res, next)
             }
           }
         }
@@ -32,7 +42,7 @@ class versionRouter {
 
       const defaultRoute = this.getDefaultRoute(versionsMap)
       if (defaultRoute) {
-        return defaultRoute(req, res, next)
+        return dispatchRoute(defaultRoute, req, res, next)
       }
 
       return next(new RouteVersionUnmatchedError(`${req.version} doesn't match any versions`))

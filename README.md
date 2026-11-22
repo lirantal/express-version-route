@@ -33,6 +33,22 @@ Then, on the route which you wish to version, call the `route` function of this 
 router.get('/test', versionRouter.route(routesMap))
 ```
 
+Map values may also be arrays of middleware functions. The handlers run in order
+when each calls `next()`, including when the route is selected by `useMaxVersion`
+or the `'default'` fallback. A handler that does not call `next()` ends the chain;
+`next(err)`, `next('route')` and `next('router')` leave the array through Express's
+outer `next` callback.
+
+```js
+routesMap.set('default', [
+  (req, res, next) => {
+    res.locals.apiVersion = 'default'
+    next()
+  },
+  (req, res) => res.json({ version: res.locals.apiVersion })
+])
+```
+
 If no route matches the version requested by a client then the next middleware in the chain will be called.
 To set a route fallback incase no version matches set a 'default' key on the routes map, for example:
 
